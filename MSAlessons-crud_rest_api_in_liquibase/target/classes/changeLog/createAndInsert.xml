@@ -1,0 +1,40 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="nrednov" id="createMessagesTable">
+        <preConditions>
+            <not>
+                <tableExists tableName="messages"/>
+            </not>
+        </preConditions>
+        <createTable tableName="messages">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="message" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <createSequence sequenceName="id_seq" startValue="1" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="insertMessage1" author="nrednov">
+        <insert tableName="messages">
+            <column name="message" value="mess1"/>
+        </insert>
+    </changeSet>
+    <changeSet id="insertMessage2" author="nrednov">
+        <insert tableName="messages">
+            <column name="message" value="mess2"/>
+        </insert>
+    </changeSet>
+    <changeSet id="insertMessage3" author="nrednov">
+        <insert tableName="messages">
+            <column name="message" value="mess3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
